@@ -1,40 +1,3 @@
-/*
-Question: What are the top-paying Data Analyst jobs?
-- Identify the top 10 highest-paying Data Analyst roles that do not require a degree
-- Focuses on job postings with specified salaries (remove nulls)
-- BONUS: Include company names of top 10 roles
-- Why? Highlight the top-paying opportunities for Data Analysts, filtering jobs that do not require a degree.
-*/
-
-SELECT
-    job_id,
-    job_title,
-    job_location,
-    job_schedule_type,
-    salary_year_avg,
-    job_posted_date,
-    job_no_degree_mention,
-    name AS company_name
-FROM    
-    job_postings_fact
-LEFT JOIN
-    company_dim ON job_postings_fact.company_id = company_dim.company_id
-WHERE
-    job_title_short = 'Data Analyst' AND
-    job_no_degree_mention = TRUE AND
-    salary_year_avg IS NOT NULL
-ORDER BY
-    salary_year_avg DESC
-LIMIT 10
-
-/*
-Here's the breakdown of the top data analyst jobs in 2023:
-Wide Salary Range: Top 10 paying data analyst roles span from $200,000 to $650,000, indicating significant salary potential in the field.
-Companies: Most of the jobs that offer high salaries are from tech companies, such as Meta, Google and TikTok
-Job Title Variety: There's a high diversity in job titles, from Data Analyst to Director of Analytics, reflecting varied roles and specializations within data analytics.
-
-RESULTS
-=======
 [
   {
     "job_id": 226942,
@@ -137,4 +100,3 @@ RESULTS
     "company_name": "Intuit Inc"
   }
 ]
-*/
